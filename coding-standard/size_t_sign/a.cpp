@@ -64,7 +64,13 @@ struct xsize_t_struct {
 template <class T_INT> bool operator< (T_INT value, xsize_t_struct size)   { if (value<0) return 1; return value < size.m_v; }
 template <class T_INT> bool operator< (xsize_t_struct size, T_INT value)   { if (value<0) return 0; return size.m_v < value; }
 template <class T_INT> bool operator<= (T_INT value, xsize_t_struct size)  { if (value<0) return 1; return value <= size.m_v; } // -100 <= 0
-template <class T_INT> bool operator<= (xsize_t_struct size, T_INT value)  { if (value<0) return 0; return size.m_v < value; } // 0 <= -100
+template <class T_INT> bool operator<= (xsize_t_struct size, T_INT value)  { if (value<0) return 0; return size.m_v <= value; } // 0 <= -100
+
+template <class T_INT> bool operator!= (T_INT value, xsize_t_struct size)   { if (value<0) return 1; return value != size.m_v; }
+template <class T_INT> bool operator!= (xsize_t_struct size, T_INT value)   { if (value<0) return 1; return value != size.m_v; }
+
+template <class T_INT> bool operator== (T_INT value, xsize_t_struct size)   { if (value<0) return 0; return value == size.m_v; }
+template <class T_INT> bool operator== (xsize_t_struct size, T_INT value)   { if (value<0) return 0; return value == size.m_v; }
 // @TODO all op
 
 #undef ATTR
@@ -178,8 +184,8 @@ bool test_vector_size(T_INT AI, size_t BV, bool loud) {
 	COMPARE( <= , "<=" );
 //	COMPARE( > , ">" );
 //	COMPARE( > , ">=" );
-//	COMPARE( == , "==" );
-//	COMPARE( != , "!=" );
+	COMPARE( == , "==" );
+	COMPARE( != , "!=" );
 	#undef COMPARE
 
 
@@ -196,7 +202,7 @@ bool test_vector_size(T_INT AI, size_t BV, bool loud) {
 	COMPARE( <= , "<=" );
 //	COMPARE( > , ">" );
 //	COMPARE( > , ">=" );
-//	COMPARE( == , "==" );
+	COMPARE( == , "==" );
 //	COMPARE( != , "!=" );
 	#undef COMPARE
 
